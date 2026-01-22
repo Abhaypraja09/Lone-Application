@@ -23,6 +23,9 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
         subject: `New Application: ${service} - ${name}`,
         html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <img src="cid:logo" alt="Catalyst Financial Services" style="width: 180px; height: auto;" />
+                </div>
                 <h2 style="color: #4f46e5; margin-bottom: 20px; text-align: center;">New Loan/Insurance Application</h2>
                 <div style="background: #f8fafc; padding: 20px; border-radius: 8px;">
                     <p><strong>Full Name:</strong> ${name}</p>
@@ -35,6 +38,13 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
                 </div>
             </div>
         `,
+        attachments: [
+            {
+                filename: 'logo.jpg',
+                path: process.cwd() + '/public/images/logo.jpg',
+                cid: 'logo' // same cid value as in the html img src
+            }
+        ]
     };
 
     try {
