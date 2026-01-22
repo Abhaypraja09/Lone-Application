@@ -19,7 +19,7 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
 
     const mailOptions = {
         from: "prajapatabhay788@gmail.com",
-        to: "scatalystfinancial@gmail.com",
+        to: "prajapatabhay788@gmail.com",
         subject: `New Application: ${service} - ${name}`,
         html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
