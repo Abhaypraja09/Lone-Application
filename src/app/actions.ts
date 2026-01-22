@@ -1,7 +1,6 @@
 "use server";
 
 import nodemailer from "nodemailer";
-import { addMessage } from "@/lib/data";
 
 export async function sendEmail(formData: FormData): Promise<{ success: boolean; error?: string }> {
     const name = formData.get("name") as string;
@@ -9,20 +8,7 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
     const service = formData.get("service") as string;
     const messageContent = formData.get("message") as string;
 
-    // 1. Save to Local Database (JSON file)
-    try {
-        addMessage({
-            name,
-            mobile,
-            service,
-            message: messageContent || "",
-        });
-    } catch (dbError) {
-        console.error("Database storage error:", dbError);
-        return { success: false, error: "System error: Failed to save details" };
-    }
-
-    // 2. Send Email Notification
+    // Send Email Notification
     const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -33,7 +19,7 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
 
     const mailOptions = {
         from: "prajapatabhay788@gmail.com",
-        to: "scatalystfinancial@gmail.com", // Updated recipient
+        to: "scatalystfinancial@gmail.com",
         subject: `New Application: ${service} - ${name}`,
         html: `
             <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
@@ -56,7 +42,6 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
         return { success: true };
     } catch (error) {
         console.error("Email Error:", error);
-        // We return success true because it's already saved in the Admin Dashboard!
-        return { success: true };
+        return { success: false, error: "Failed to send email. Please try again or call us." };
     }
 }
