@@ -89,8 +89,8 @@ const Footer = () => {
                                 <div className="w-10 h-10 shrink-0 bg-slate-50 rounded-xl flex items-center justify-center text-primary border border-slate-100 group-hover:bg-primary group-hover:text-white transition-all duration-300">
                                     <Mail size={18} />
                                 </div>
-                                <a href="mailto:prajapatabhay788@gmail.com" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors truncate max-w-full px-4 sm:px-0">
-                                    prajapatabhay788@gmail.com
+                                <a href="mailto:scatalystfinancial@gmail.com" className="text-sm font-bold text-slate-500 hover:text-primary transition-colors truncate max-w-full px-4 sm:px-0">
+                                    scatalystfinancial@gmail.com
                                 </a>
                             </div>
                         </div>

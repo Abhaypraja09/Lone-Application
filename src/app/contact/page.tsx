@@ -80,7 +80,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <p className="text-xs font-bold uppercase tracking-wide text-slate-500 mb-1">Email Address</p>
-                                    <a href="mailto:prajapatabhay788@gmail.com" className="text-lg font-semibold text-slate-900 hover:text-primary transition-colors break-all">prajapatabhay788@gmail.com</a>
+                                    <a href="mailto:scatalystfinancial@gmail.com" className="text-lg font-semibold text-slate-900 hover:text-primary transition-colors break-all">scatalystfinancial@gmail.com</a>
                                 </div>
                             </motion.div>
                         </div>
