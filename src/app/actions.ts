@@ -1,6 +1,7 @@
 "use server";
 
 import nodemailer from "nodemailer";
+import path from "path";
 
 export async function sendEmail(formData: FormData): Promise<{ success: boolean; error?: string }> {
     const name = formData.get("name") as string;
@@ -16,6 +17,9 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
             pass: "ubtbuhcjfapqilwx",
         },
     });
+
+    // Resolve the absolute path to the logo
+    const logoPath = path.join(process.cwd(), "public", "images", "logo.jpg");
 
     const mailOptions = {
         from: "prajapatabhay788@gmail.com",
@@ -41,8 +45,8 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
         attachments: [
             {
                 filename: 'logo.jpg',
-                path: process.cwd() + '/public/images/logo.jpg',
-                cid: 'logo' // same cid value as in the html img src
+                path: logoPath,
+                cid: 'logo'
             }
         ]
     };
@@ -50,8 +54,12 @@ export async function sendEmail(formData: FormData): Promise<{ success: boolean;
     try {
         await transporter.sendMail(mailOptions);
         return { success: true };
-    } catch (error) {
+    } catch (error: any) {
         console.error("Email Error:", error);
-        return { success: false, error: "Failed to send email. Please try again or call us." };
+        // Include more details if it's a specific SMTP error
+        return {
+            success: false,
+            error: error.message || "Failed to send email. Please try again or call us."
+        };
     }
 }
